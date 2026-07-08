@@ -1,0 +1,314 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Smart Civic Issue Reporting System{% endblock %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#f5f7fa;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero-section{
+    position:relative;
+    width:100%;
+    min-height:560px;
+    border-radius:15px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    margin-bottom:50px;
+
+    background-image:
+    linear-gradient(rgba(0,45,98,.75),rgba(0,45,98,.75)),
+    url("https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:850px;
+    padding:20px;
+}
+
+.gov-badge{
+    display:inline-block;
+    background:white;
+    color:#0d47a1;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:600;
+    margin-bottom:20px;
+    font-size:15px;
+}
+
+.hero-section h1{
+    font-size:52px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.hero-section p{
+    font-size:20px;
+    line-height:1.8;
+    opacity:.95;
+}
+
+.hero-btn{
+    margin-top:30px;
+    padding:14px 40px;
+    font-size:18px;
+    border-radius:50px;
+    font-weight:600;
+}
+
+/* ================= FEATURES ================= */
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    color:#0d47a1;
+    font-weight:bold;
+}
+
+.feature-card{
+    border:none;
+    border-radius:15px;
+    padding:35px 25px;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    background:white;
+    height:100%;
+}
+
+.feature-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+.feature-icon{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.feature-card h4{
+    color:#0d47a1;
+    font-weight:bold;
+}
+
+.feature-card p{
+    color:#555;
+}
+
+/* ================= STATS ================= */
+
+.stats-section{
+    margin-top:60px;
+    background:#0d47a1;
+    border-radius:15px;
+    color:white;
+    padding:45px 20px;
+}
+
+.stat-box{
+    text-align:center;
+}
+
+.stat-box h2{
+    font-size:42px;
+    font-weight:bold;
+}
+
+.stat-box p{
+    margin:0;
+    font-size:18px;
+}
+
+/* ================= ABOUT ================= */
+
+.about-section{
+    margin-top:60px;
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.about-section h3{
+    color:#0d47a1;
+    font-weight:bold;
+}
+
+.about-section p{
+    color:#555;
+    line-height:1.9;
+    font-size:17px;
+}
+
+@media(max-width:768px){
+
+.hero-section{
+min-height:450px;
+}
+
+.hero-section h1{
+font-size:34px;
+}
+
+.hero-section p{
+font-size:17px;
+}
+
+.hero-btn{
+width:100%;
+}
+
+}
+
+</style>
+
+<!-- HERO -->
+
+<div class="hero-section">
+
+    <div class="hero-content">
+
+        <div class="gov-badge">
+            Government Smart Citizen Portal
+        </div>
+
+        <h1>Smart Civic Issue Reporting System</h1>
+
+        <p>
+            Report civic issues such as potholes, garbage, streetlight failures,
+            water leakage and monitor complaint resolution through a transparent
+            and efficient digital platform.
+        </p>
+
+        <a href="/register" class="btn btn-warning btn-lg hero-btn">
+            Get Started
+        </a>
+
+    </div>
+
+</div>
+
+<!-- FEATURES -->
+
+<div class="row g-4">
+
+    <div class="col-lg-4">
+
+        <div class="feature-card text-center">
+
+            <div class="feature-icon">
+                📍
+            </div>
+
+            <h4>Report Civic Issues</h4>
+
+            <p>
+                Submit complaints with images and location to the concerned
+                authority.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="feature-card text-center">
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <h4>Track Complaint Status</h4>
+
+            <p>
+                Monitor your complaint progress from submission until
+                resolution.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="feature-card text-center">
+
+            <div class="feature-icon">
+                🤖
+            </div>
+
+            <h4>Smart Prioritization</h4>
+
+            <p>
+                AI-assisted priority detection helps authorities respond to
+                critical issues faster.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats-section">
+
+    <div class="row">
+
+        <div class="col-md-3 stat-box">
+            <h2>24×7</h2>
+            <p>Citizen Support</p>
+        </div>
+
+        <div class="col-md-3 stat-box">
+            <h2>100%</h2>
+            <p>Digital Reporting</p>
+        </div>
+
+        <div class="col-md-3 stat-box">
+            <h2>Fast</h2>
+            <p>Issue Tracking</p>
+        </div>
+
+        <div class="col-md-3 stat-box">
+            <h2>Secure</h2>
+            <p>Complaint Management</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ABOUT -->
+
+<div class="about-section">
+
+    <h3>About the Portal</h3>
+
+    <p>
+
+        The Smart Civic Issue Reporting System enables citizens to report
+        public infrastructure issues through a centralized online platform.
+        Citizens can upload photographs, describe the issue, and monitor
+        complaint status in real time while government authorities manage,
+        prioritize, and resolve reported issues efficiently.
+
+    </p>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}My Complaints{% endblock %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#eef3f8;
+}
+
+/* Header */
+
+.page-header{
+    background:linear-gradient(135deg,#0d47a1,#1565c0);
+    color:white;
+    border-radius:18px;
+    padding:35px;
+    text-align:center;
+    margin-bottom:35px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.page-header h2{
+    font-weight:700;
+}
+
+.page-header p{
+    margin:0;
+    opacity:.9;
+}
+
+/* Complaint Card */
+
+.complaint-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+    transition:.3s;
+    background:white;
+}
+
+.complaint-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 35px rgba(0,0,0,.15);
+}
+
+.complaint-img{
+    height:230px;
+    object-fit:cover;
+}
+
+.card-body h4{
+    color:#0d47a1;
+    font-weight:700;
+}
+
+.info-row{
+    margin-bottom:10px;
+    color:#555;
+}
+
+.status{
+    padding:7px 16px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.btn-details{
+    border-radius:10px;
+    font-weight:600;
+}
+
+/* Empty */
+
+.empty-box{
+    background:white;
+    border-radius:18px;
+    padding:50px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.empty-box h4{
+    color:#0d47a1;
+}
+
+</style>
+
+<div class="container mt-4">
+
+    <div class="page-header">
+
+        <h2>📋 My Complaints</h2>
+
+        <p>
+            View all submitted complaints and track their current status.
+        </p>
+
+    </div>
+
+    <div class="row">
+
+        {% for complaint in complaints %}
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card complaint-card">
+
+                {% if complaint.image %}
+
+                <img src="{{ url_for('static', filename='uploads/' + complaint.image) }}"
+                     class="card-img-top complaint-img">
+
+                {% else %}
+
+                <img src="https://via.placeholder.com/700x300?text=No+Image+Available"
+                     class="card-img-top complaint-img">
+
+                {% endif %}
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <h4>
+                            {{ complaint.title }}
+                        </h4>
+
+                        {% if complaint.status=="Pending" %}
+
+                        <span class="badge bg-warning text-dark status">
+                            Pending
+                        </span>
+
+                        {% elif complaint.status=="In Progress" %}
+
+                        <span class="badge bg-info status">
+                            In Progress
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-success status">
+                            Resolved
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <hr>
+
+                    <div class="info-row">
+                        <strong>Complaint ID:</strong>
+                        #{{ complaint.id }}
+                    </div>
+
+                    <div class="info-row">
+                        <strong>📂 Category:</strong>
+                        {{ complaint.category }}
+                    </div>
+
+                    <div class="info-row">
+                        <strong>📍 Location:</strong>
+                        {{ complaint.location }}
+                    </div>
+
+                    <div class="info-row">
+                        <strong>📅 Submitted:</strong>
+                        {{ complaint.created_at }}
+                    </div>
+
+                    <a href="/complaint/{{ complaint.id }}"
+                       class="btn btn-primary btn-details w-100 mt-3">
+
+                        🔍 View Complete Details
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% if complaints|length == 0 %}
+
+    <div class="empty-box">
+
+        <div style="font-size:70px;">
+            📭
+        </div>
+
+        <h4>No Complaints Submitted</h4>
+
+        <p class="text-muted">
+            You haven't submitted any civic complaints yet.
+            Click <strong>Report Complaint</strong> from your dashboard to
+            report a new issue.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

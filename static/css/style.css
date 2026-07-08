@@ -1,0 +1,135 @@
+body{
+    background:#f4f7fc;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* Navbar */
+.navbar{
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+/* Cards */
+.card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.3s;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+
+/* Card Header */
+.card-header{
+    font-weight:bold;
+    font-size:18px;
+}
+
+/* Buttons */
+.btn{
+    border-radius:10px;
+    font-weight:600;
+}
+
+.btn-primary{
+    background:#0d6efd;
+}
+
+.btn-success{
+    background:#198754;
+}
+
+.btn-warning{
+    color:#000;
+}
+
+.btn-info{
+    color:white;
+}
+
+/* Status Badge */
+.badge{
+    padding:8px 15px;
+    font-size:14px;
+    border-radius:20px;
+}
+
+/* Image Preview */
+img{
+    border-radius:12px;
+}
+
+.complaint-img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+    border:1px solid #ddd;
+}
+
+/* Dashboard Cards */
+.dashboard-card{
+    border-radius:20px;
+    color:white;
+    padding:25px;
+    text-align:center;
+    transition:.3s;
+}
+
+.dashboard-card:hover{
+    transform:scale(1.03);
+}
+
+.bg-blue{
+    background:#2563eb;
+}
+
+.bg-green{
+    background:#16a34a;
+}
+
+.bg-orange{
+    background:#f59e0b;
+}
+
+.bg-red{
+    background:#dc2626;
+}
+
+/* Tables */
+.table{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+/* Forms */
+.form-control,
+.form-select{
+    border-radius:10px;
+}
+
+textarea{
+    resize:none;
+}
+
+/* Footer */
+footer{
+    margin-top:40px;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+.card{
+margin-bottom:20px;
+}
+
+.dashboard-card{
+margin-bottom:20px;
+}
+
+}

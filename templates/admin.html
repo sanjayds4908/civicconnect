@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        background: #f4f6f9;
+    }
+
+    .dashboard-title {
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .stat-card {
+        border: none;
+        border-radius: 16px;
+        transition: 0.3s;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .complaint-card {
+        border: none;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        transition: 0.3s;
+        background: #fff;
+    }
+
+    .complaint-card:hover {
+        transform: scale(1.01);
+    }
+
+    .complaint-header {
+        background: linear-gradient(135deg, #1f2937, #111827);
+        color: white;
+        padding: 12px 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .section-title {
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .img-preview {
+        border-radius: 12px;
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    .btn-action {
+        font-size: 14px;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h2 class="dashboard-title text-primary">🏛 Admin Control Panel</h2>
+        <p class="text-muted">Smart Civic Issue Reporting System</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="row mb-4">
+
+        <div class="col-md-3 mb-3">
+            <div class="card stat-card text-center p-3 bg-primary text-white">
+                <h6>Total Complaints</h6>
+                <h2>{{ complaints|length }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card stat-card text-center p-3 bg-warning">
+                <h6>Pending</h6>
+                <h2>{{ complaints|selectattr("status","equalto","Pending")|list|length }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card stat-card text-center p-3 bg-info text-white">
+                <h6>In Progress</h6>
+                <h2>{{ complaints|selectattr("status","equalto","In Progress")|list|length }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card stat-card text-center p-3 bg-success text-white">
+                <h6>Resolved</h6>
+                <h2>{{ complaints|selectattr("status","equalto","Resolved")|list|length }}</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Complaints -->
+    <div class="row">
+
+        {% for c in complaints %}
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="complaint-card">
+
+                <!-- Header -->
+                <div class="complaint-header">
+                    <div>
+                        <strong>Complaint #{{ c.id }}</strong>
+                    </div>
+
+                    <div>
+                        {% if c.status=="Pending" %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        {% elif c.status=="In Progress" %}
+                            <span class="badge bg-info">In Progress</span>
+                        {% else %}
+                            <span class="badge bg-success">Resolved</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="p-3">
+
+                    <!-- User -->
+                    <h6 class="section-title">👤 Citizen Info</h6>
+                    <p class="mb-1"><b>Name:</b> {{ c.user.full_name }}</p>
+                    <p class="mb-1"><b>Email:</b> {{ c.user.email }}</p>
+                    <p class="mb-3"><b>Phone:</b> {{ c.user.phone }}</p>
+
+                    <hr>
+
+                    <!-- Complaint -->
+                    <h6 class="section-title">📄 Complaint Info</h6>
+                    <p><b>Title:</b> {{ c.title }}</p>
+                    <p><b>Category:</b> {{ c.category }}</p>
+                    <p><b>Location:</b> {{ c.location }}</p>
+
+                    <div class="bg-light p-2 rounded border mb-3">
+                        {{ c.description }}
+                    </div>
+
+                    <!-- Image -->
+                    <h6 class="section-title">🖼 Image</h6>
+
+                    {% if c.image %}
+                        <a href="{{ url_for('static', filename='uploads/' + c.image) }}" target="_blank">
+                            <img src="{{ url_for('static', filename='uploads/' + c.image) }}"
+                                 class="img-preview mt-2">
+                        </a>
+                    {% else %}
+                        <div class="alert alert-secondary">No Image Uploaded</div>
+                    {% endif %}
+
+                    <hr>
+
+                    <!-- Footer Info -->
+                    <div class="d-flex justify-content-between small text-muted mb-3">
+                        <div>📅 {{ c.created_at }}</div>
+                        <div>
+                            Status:
+                            <b>{{ c.status }}</b>
+                        </div>
+                    </div>
+
+                    <!-- View Button -->
+                    <a href="/complaint/{{ c.id }}" class="btn btn-dark w-100 btn-action mb-2">
+                        👁 View Full Details
+                    </a>
+
+                    <!-- Actions -->
+                    <div class="row g-2">
+
+                        <div class="col-4">
+                            <a href="/admin/update/{{ c.id }}/Pending"
+                               class="btn btn-warning w-100 btn-action">
+                                Pending
+                            </a>
+                        </div>
+
+                        <div class="col-4">
+                            <a href="/admin/update/{{ c.id }}/In Progress"
+                               class="btn btn-info text-white w-100 btn-action">
+                                Progress
+                            </a>
+                        </div>
+
+                        <div class="col-4">
+                            <a href="/admin/update/{{ c.id }}/Resolved"
+                               class="btn btn-success w-100 btn-action">
+                                Done
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% if complaints|length == 0 %}
+        <div class="text-center p-5 bg-white shadow rounded">
+            <h4>📭 No Complaints Found</h4>
+            <p class="text-muted">Everything is clean right now.</p>
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

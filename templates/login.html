@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}Citizen Login{% endblock %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#eef3f8;
+}
+
+.login-container{
+    max-width:520px;
+    margin:50px auto;
+}
+
+.login-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.login-header{
+    background:linear-gradient(135deg,#0d47a1,#1565c0);
+    color:white;
+    text-align:center;
+    padding:35px;
+}
+
+.login-header h2{
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.login-header p{
+    margin:0;
+    opacity:.9;
+}
+
+.login-body{
+    background:white;
+    padding:35px;
+}
+
+.form-label{
+    font-weight:600;
+    color:#0d47a1;
+}
+
+.form-control{
+    border-radius:10px;
+    padding:12px;
+    border:1px solid #ced4da;
+}
+
+.form-control:focus{
+    border-color:#1565c0;
+    box-shadow:0 0 8px rgba(21,101,192,.25);
+}
+
+.btn-login{
+    background:#0d6efd;
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    font-size:18px;
+    font-weight:600;
+}
+
+.btn-login:hover{
+    background:#0b5ed7;
+}
+
+.register-link{
+    text-align:center;
+    margin-top:20px;
+}
+
+.register-link a{
+    text-decoration:none;
+    font-weight:600;
+}
+
+.info-box{
+    margin-top:25px;
+    background:#f8f9fa;
+    border-left:5px solid #0d47a1;
+    padding:15px;
+    border-radius:8px;
+    font-size:15px;
+}
+
+@media(max-width:768px){
+
+.login-body{
+padding:25px;
+}
+
+.login-header{
+padding:25px;
+}
+
+}
+
+</style>
+
+<div class="login-container">
+
+    <div class="card login-card">
+
+        <div class="login-header">
+
+            <h2>🏛 Citizen Login</h2>
+
+            <p>Smart Civic Issue Reporting System</p>
+
+        </div>
+
+        <div class="login-body">
+
+            <form method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="Enter your email"
+                        required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Enter your password"
+                        required>
+                </div>
+
+                <button class="btn btn-primary btn-login w-100">
+                    Login
+                </button>
+
+            </form>
+
+            <div class="register-link">
+
+                Don't have an account?
+
+                <a href="/register">
+                    Register Here
+                </a>
+
+            </div>
+
+            <div class="info-box">
+
+                <strong>Secure Access:</strong>
+
+                Login to submit new complaints, upload supporting images,
+                track complaint status, and receive updates from the concerned
+                government department.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

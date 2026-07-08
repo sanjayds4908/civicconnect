@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block title %}Report Civic Issue{% endblock %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#eef3f8;
+}
+
+.report-container{
+    max-width:900px;
+    margin:40px auto;
+}
+
+.report-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.report-header{
+    background:linear-gradient(135deg,#0d47a1,#1565c0);
+    color:white;
+    padding:30px;
+    text-align:center;
+}
+
+.report-header h2{
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.report-header p{
+    margin:0;
+    opacity:.9;
+}
+
+.report-body{
+    background:white;
+    padding:35px;
+}
+
+.form-label{
+    font-weight:600;
+    color:#0d47a1;
+}
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    padding:12px;
+    border:1px solid #ced4da;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#1565c0;
+    box-shadow:0 0 8px rgba(21,101,192,.25);
+}
+
+textarea{
+    resize:none;
+}
+
+.btn-submit{
+    background:#0d6efd;
+    border:none;
+    border-radius:10px;
+    padding:14px;
+    font-size:18px;
+    font-weight:600;
+}
+
+.btn-submit:hover{
+    background:#0b5ed7;
+}
+
+.info-box{
+    margin-top:30px;
+    background:#f8f9fa;
+    border-left:5px solid #0d47a1;
+    border-radius:8px;
+    padding:18px;
+}
+
+.info-box h5{
+    color:#0d47a1;
+    font-weight:bold;
+}
+
+.info-box ul{
+    margin-bottom:0;
+}
+
+.info-box li{
+    margin-bottom:8px;
+}
+
+@media(max-width:768px){
+
+.report-body{
+padding:25px;
+}
+
+.report-header{
+padding:25px;
+}
+
+}
+
+</style>
+
+<div class="report-container">
+
+    <div class="card report-card">
+
+        <div class="report-header">
+
+            <h2>🚨 Report Civic Issue</h2>
+
+            <p>
+                Smart Civic Issue Reporting System
+            </p>
+
+        </div>
+
+        <div class="report-body">
+
+            <form method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Issue Title
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="title"
+                        placeholder="Enter issue title"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Issue Category
+                    </label>
+
+                    <select
+                        class="form-select"
+                        name="category"
+                        required>
+
+                        <option value="">Select Category</option>
+                        <option>Pothole</option>
+                        <option>Garbage</option>
+                        <option>Water Leakage</option>
+                        <option>Street Light</option>
+                        <option>Road Damage</option>
+                        <option>Drainage</option>
+                        <option>Illegal Parking</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Description
+                    </label>
+
+                    <textarea
+                        class="form-control"
+                        rows="5"
+                        name="description"
+                        placeholder="Provide complete details about the issue..."
+                        required></textarea>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="location"
+                        placeholder="Enter issue location"
+                        required>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+                        Upload Supporting Image
+                    </label>
+
+                    <input
+                        type="file"
+                        class="form-control"
+                        name="image">
+
+                </div>
+
+                <button class="btn btn-primary btn-submit w-100">
+
+                    Submit Complaint
+
+                </button>
+
+            </form>
+
+            <div class="info-box">
+
+                <h5>Citizen Guidelines</h5>
+
+                <ul>
+                    <li>✔ Enter the correct issue location.</li>
+                    <li>✔ Upload a clear image for faster verification.</li>
+                    <li>✔ Provide a detailed description of the issue.</li>
+                    <li>✔ Track complaint status from the <strong>My Complaints</strong> page.</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

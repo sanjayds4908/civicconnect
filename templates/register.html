@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}Citizen Registration{% endblock %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#eef3f8;
+}
+
+.register-container{
+    max-width:650px;
+    margin:40px auto;
+}
+
+.register-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.register-header{
+    background:linear-gradient(135deg,#0d47a1,#1565c0);
+    color:white;
+    text-align:center;
+    padding:35px;
+}
+
+.register-header h2{
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.register-header p{
+    margin:0;
+    opacity:.9;
+}
+
+.register-body{
+    padding:35px;
+    background:white;
+}
+
+.form-label{
+    font-weight:600;
+    color:#0d47a1;
+}
+
+.form-control{
+    border-radius:10px;
+    padding:12px;
+    border:1px solid #ced4da;
+}
+
+.form-control:focus{
+    border-color:#1565c0;
+    box-shadow:0 0 8px rgba(21,101,192,.25);
+}
+
+.btn-register{
+    background:#198754;
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    font-size:18px;
+    font-weight:600;
+}
+
+.btn-register:hover{
+    background:#157347;
+}
+
+.login-link{
+    text-align:center;
+    margin-top:20px;
+}
+
+.login-link a{
+    text-decoration:none;
+    font-weight:600;
+}
+
+.note-box{
+    margin-top:25px;
+    background:#f8f9fa;
+    border-left:5px solid #0d47a1;
+    padding:15px;
+    border-radius:8px;
+    font-size:15px;
+}
+
+@media(max-width:768px){
+
+.register-body{
+padding:25px;
+}
+
+.register-header{
+padding:25px;
+}
+
+}
+
+</style>
+
+<div class="register-container">
+
+    <div class="card register-card">
+
+        <div class="register-header">
+
+            <h2>🏛 Citizen Registration</h2>
+
+            <p>Smart Civic Issue Reporting System</p>
+
+        </div>
+
+        <div class="register-body">
+
+            <form method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text"
+                           name="full_name"
+                           class="form-control"
+                           placeholder="Enter your full name"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           placeholder="Enter your email"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Mobile Number</label>
+                    <input type="text"
+                           name="phone"
+                           class="form-control"
+                           placeholder="Enter your mobile number"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password"
+                           name="password"
+                           class="form-control"
+                           placeholder="Create a secure password"
+                           required>
+                </div>
+
+                <button class="btn btn-success btn-register w-100">
+                    Register
+                </button>
+
+            </form>
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a href="/login">
+                    Login Here
+                </a>
+
+            </div>
+
+            <div class="note-box">
+
+                <strong>Note:</strong>
+                Register to submit civic complaints, upload issue photographs,
+                monitor complaint status, and receive updates from the concerned
+                government authority.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

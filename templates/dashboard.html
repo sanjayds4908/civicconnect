@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block title %}Citizen Dashboard{% endblock %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#eef3f8;
+}
+
+/* Welcome Banner */
+
+.dashboard-banner{
+    background:linear-gradient(135deg,#0d47a1,#1565c0);
+    color:white;
+    border-radius:18px;
+    padding:45px;
+    margin-bottom:35px;
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+
+.dashboard-banner h2{
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.dashboard-banner p{
+    margin:0;
+    opacity:.95;
+    font-size:18px;
+}
+
+/* Cards */
+
+.service-card{
+    border:none;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    background:white;
+    height:100%;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+}
+
+.service-icon{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.service-card h4{
+    font-weight:bold;
+    color:#0d47a1;
+}
+
+.service-card p{
+    color:#666;
+    min-height:70px;
+}
+
+.btn-dashboard{
+    border-radius:10px;
+    font-weight:600;
+}
+
+/* Admin Panel */
+
+.admin-panel{
+    margin-top:40px;
+    background:linear-gradient(135deg,#263238,#37474F);
+    color:white;
+    border-radius:18px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.admin-panel h3{
+    font-weight:bold;
+}
+
+.admin-panel .btn{
+    margin-top:15px;
+    font-weight:600;
+}
+
+/* Info */
+
+.info-section{
+    margin-top:45px;
+}
+
+.info-card{
+    background:white;
+    border:none;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.info-card h5{
+    color:#0d47a1;
+    font-weight:bold;
+}
+
+.info-card ul{
+    margin-bottom:0;
+}
+
+.info-card li{
+    margin-bottom:10px;
+}
+
+@media(max-width:768px){
+
+.dashboard-banner{
+padding:30px 20px;
+text-align:center;
+}
+
+}
+
+</style>
+
+<div class="container mt-4">
+
+    <!-- Welcome Banner -->
+
+    <div class="dashboard-banner">
+
+        <h2>
+            Welcome, {{ current_user.full_name }}
+        </h2>
+
+        <p>
+            Smart Civic Issue Reporting System
+            <br>
+            Report civic issues, monitor complaint status, and help improve your community.
+        </p>
+
+    </div>
+
+    <!-- Main Services -->
+
+    <div class="row g-4">
+
+        <div class="col-lg-4">
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🚨
+                </div>
+
+                <h4>Report Complaint</h4>
+
+                <p>
+                    Submit complaints related to roads, garbage,
+                    drainage, water leakage, streetlights and other civic issues.
+                </p>
+
+                <a href="/report" class="btn btn-primary btn-dashboard w-100">
+                    Report Now
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    📄
+                </div>
+
+                <h4>My Complaints</h4>
+
+                <p>
+                    View all submitted complaints and check their latest
+                    status updates from the authority.
+                </p>
+
+                <a href="/my-complaints" class="btn btn-success btn-dashboard w-100">
+                    View Complaints
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    📊
+                </div>
+
+                <h4>Analytics</h4>
+
+                <p>
+                    View complaint statistics including Pending,
+                    In Progress and Resolved cases.
+                </p>
+
+                <a href="/analytics" class="btn btn-warning btn-dashboard w-100">
+                    View Analytics
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Citizen Information -->
+
+    <div class="info-section">
+
+        <div class="info-card">
+
+            <h5>Citizen Services</h5>
+
+            <ul>
+                <li>✔ Report civic issues with image upload.</li>
+                <li>✔ Track complaint progress in real time.</li>
+                <li>✔ Receive status updates from authorities.</li>
+                <li>✔ View complaint history anytime.</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- Admin Panel -->
+
+    {% if current_user.role == "admin" %}
+
+    <div class="admin-panel">
+
+        <h3>👮 Administrator Control Panel</h3>
+
+        <p>
+            Access the administrative dashboard to review, update,
+            prioritize and resolve citizen complaints.
+        </p>
+
+        <a href="/admin" class="btn btn-light btn-lg">
+            Open Admin Dashboard
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

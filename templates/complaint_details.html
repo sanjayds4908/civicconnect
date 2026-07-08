@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block title %}Complaint Details{% endblock %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#eef3f8;
+}
+
+.details-header{
+    background:linear-gradient(135deg,#0d47a1,#1565c0);
+    color:white;
+    padding:30px;
+    border-radius:18px;
+    margin-bottom:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.details-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+}
+
+.complaint-image{
+    width:100%;
+    height:360px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.info-card{
+    background:#f8f9fa;
+    border-radius:15px;
+    padding:20px;
+}
+
+.info-item{
+    margin-bottom:18px;
+    font-size:16px;
+}
+
+.info-item strong{
+    color:#0d47a1;
+}
+
+.status-badge{
+    font-size:15px;
+    padding:8px 18px;
+    border-radius:30px;
+}
+
+.description-box{
+    background:#f8f9fa;
+    border-left:5px solid #0d47a1;
+    border-radius:10px;
+    padding:20px;
+    line-height:1.8;
+}
+
+.progress{
+    height:28px;
+    border-radius:20px;
+}
+
+.section-title{
+    color:#0d47a1;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.btn-back{
+    border-radius:10px;
+    padding:10px 25px;
+    font-weight:600;
+}
+
+</style>
+
+<div class="container mt-4">
+
+    <div class="details-header text-center">
+
+        <h2>
+            📄 Complaint Details
+        </h2>
+
+        <p class="mb-0">
+            Complaint ID : <strong>#{{ complaint.id }}</strong>
+        </p>
+
+    </div>
+
+    <div class="card details-card">
+
+        <div class="card-body p-4">
+
+            <div class="row">
+
+                <!-- Image -->
+
+                <div class="col-lg-5 mb-4">
+
+                    {% if complaint.image %}
+
+                    <img src="{{ url_for('static', filename='uploads/' + complaint.image) }}"
+                         class="complaint-image shadow">
+
+                    {% else %}
+
+                    <img src="https://via.placeholder.com/600x400?text=No+Image+Available"
+                         class="complaint-image shadow">
+
+                    {% endif %}
+
+                </div>
+
+                <!-- Information -->
+
+                <div class="col-lg-7">
+
+                    <div class="info-card">
+
+                        <h3 class="text-primary fw-bold mb-4">
+
+                            {{ complaint.title }}
+
+                        </h3>
+
+                        <div class="info-item">
+
+                            <strong>📂 Category</strong><br>
+
+                            {{ complaint.category }}
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <strong>📍 Location</strong><br>
+
+                            {{ complaint.location }}
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <strong>📅 Submitted On</strong><br>
+
+                            {{ complaint.created_at }}
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <strong>Status</strong><br>
+
+                            {% if complaint.status=="Pending" %}
+
+                            <span class="badge bg-warning text-dark status-badge">
+
+                                Pending
+
+                            </span>
+
+                            {% elif complaint.status=="In Progress" %}
+
+                            <span class="badge bg-info status-badge">
+
+                                In Progress
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-success status-badge">
+
+                                Resolved
+
+                            </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <h4 class="section-title">
+                📝 Complaint Description
+            </h4>
+
+            <div class="description-box">
+
+                {{ complaint.description }}
+
+            </div>
+
+            <hr class="my-4">
+
+            <h4 class="section-title">
+                🚦 Complaint Progress
+            </h4>
+
+            <div class="progress">
+
+                {% if complaint.status=="Pending" %}
+
+                <div class="progress-bar bg-warning"
+                     style="width:33%;">
+
+                    Pending (33%)
+
+                </div>
+
+                {% elif complaint.status=="In Progress" %}
+
+                <div class="progress-bar bg-info"
+                     style="width:66%;">
+
+                    In Progress (66%)
+
+                </div>
+
+                {% else %}
+
+                <div class="progress-bar bg-success"
+                     style="width:100%;">
+
+                    Resolved (100%)
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            <div class="text-center mt-5">
+
+                <a href="/my-complaints"
+                   class="btn btn-secondary btn-back">
+
+                    ← Back to My Complaints
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
