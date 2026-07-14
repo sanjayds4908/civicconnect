@@ -163,7 +163,7 @@ git clone https://github.com/sanjayds4908/civicconnect.git
 ### 2. Open Project Folder
 
 ```bash
-cd Smart-Civic-Issue-Reporting-System
+cd civicconnect
 ```
 
 ### 3. Create Virtual Environment
